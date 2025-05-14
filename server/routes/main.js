@@ -61,7 +61,11 @@ router.get('/post/:id', async (req, res) => {
       description: "Simple blog created with NodeJs, Express & MongoDb."
     }
 
-    res.render('post', { locals, data });
+    res.render('post', { 
+      locals,
+      data,
+      currentRoute: `/post/${slug}`
+    });
   } catch (error) {
       console.log(error);
   }
@@ -115,10 +119,29 @@ router.post('/search', async (req, res) => {
 
 
 
-// Routes
+/**
+ * GET /
+ * About
+*/
 router.get('/about', (req, res) => {
-    res.render('about');
+  res.render('about', {
+    currentRoute: '/about'
+  });
 });
+
+
+
+/**
+ * GET /
+ * Contact
+*/
+router.get('/contact', (req, res) => {
+  res.render('contact', {
+    currentRoute: '/contact'
+  });
+});
+
+
 
 module.exports = router;
 
